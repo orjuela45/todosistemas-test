@@ -9,19 +9,19 @@ use App\Http\Requests\UpdateEmployeRequest;
 class EmployeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display all active employes.
      */
     public function index()
     {
-        //
+        return Employe::where("status", ["ACTIVE"])->with('tasks')->get();
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display all employes
      */
-    public function create()
+    public function all()
     {
-        //
+        return Employe::with('tasks')->get();
     }
 
     /**
@@ -29,7 +29,13 @@ class EmployeController extends Controller
      */
     public function store(StoreEmployeRequest $request)
     {
-        //
+        $employe = new Employe([
+            "fullname" => $request->fullname,
+            "phone" => $request->phone,
+            "email" => $request->email
+        ]);
+        $employe->save();
+        return $employe;
     }
 
     /**
@@ -37,15 +43,7 @@ class EmployeController extends Controller
      */
     public function show(Employe $employe)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Employe $employe)
-    {
-        //
+        return $employe;
     }
 
     /**
@@ -53,7 +51,13 @@ class EmployeController extends Controller
      */
     public function update(UpdateEmployeRequest $request, Employe $employe)
     {
-        //
+        $employe->update([
+            "fullname" => $request->fullname ?? $employe->fullname,
+            "email" => $request->email ?? $employe->email,
+            "phone" => $request->phone ?? $employe->phone,
+            "status" => $request->status ?? $employe->status
+        ]);
+        return $employe;
     }
 
     /**
@@ -61,6 +65,11 @@ class EmployeController extends Controller
      */
     public function destroy(Employe $employe)
     {
-        //
+        $pendingTasks = $employe->tasks()->where('status',"!=","FINISHED")->get();
+        if (count($pendingTasks)>0){
+            return response("The employe has tasks that are not finished yet", 401);
+        }
+        $employe->update(["status" => "INACTIVE"]);
+        return ["msg" => "Employe delete"];
     }
 }

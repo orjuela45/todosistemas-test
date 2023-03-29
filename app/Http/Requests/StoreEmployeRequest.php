@@ -11,7 +11,7 @@ class StoreEmployeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreEmployeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "fullname"=>"required|string",
+            "phone"=>"required|string",
+            "email"=>"required"
         ];
     }
 }

@@ -11,7 +11,7 @@ class UpdateEmployeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateEmployeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "fullname"=>"string",
+            "phone"=>"string",
+            "email"=>"",
+            "status"=>"boolean"
         ];
     }
 }

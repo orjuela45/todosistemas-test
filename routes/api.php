@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix("employe")->group(function(){
+    Route::get("all", [EmployeController::class, "all"]);
 });
+
+Route::apiResource("employe", EmployeController::class);
+Route::apiResource("task", TaskController::class);
