@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Employe;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateEmployeRequest extends FormRequest
@@ -25,7 +26,7 @@ class UpdateEmployeRequest extends FormRequest
             "fullname"=>"string",
             "phone"=>"string",
             "email"=>"",
-            "status"=>"boolean"
+            "status"=>"in:". implode(",", Employe::$status)
         ];
     }
 }

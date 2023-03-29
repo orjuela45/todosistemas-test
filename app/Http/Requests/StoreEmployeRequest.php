@@ -24,7 +24,7 @@ class StoreEmployeRequest extends FormRequest
         return [
             "fullname"=>"required|string",
             "phone"=>"required|string",
-            "email"=>"required"
+            "email"=>"required|email|unique:employes,email"
         ];
     }
 }

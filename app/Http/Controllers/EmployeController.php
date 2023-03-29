@@ -13,7 +13,7 @@ class EmployeController extends Controller
      */
     public function index()
     {
-        return Employe::where("status", ["ACTIVE"])->with('tasks')->get();
+        return Employe::where("status", ["ACTIVE"])->with('tasks')->paginate();
     }
 
     /**
@@ -21,7 +21,7 @@ class EmployeController extends Controller
      */
     public function all()
     {
-        return Employe::with('tasks')->get();
+        return Employe::with('tasks')->paginate();
     }
 
     /**
@@ -43,7 +43,7 @@ class EmployeController extends Controller
      */
     public function show(Employe $employe)
     {
-        return $employe;
+        return $employe->with("tasks")->find($employe->id);
     }
 
     /**
@@ -70,6 +70,6 @@ class EmployeController extends Controller
             return response("The employe has tasks that are not finished yet", 401);
         }
         $employe->update(["status" => "INACTIVE"]);
-        return ["msg" => "Employe delete"];
+        return ["msg" => "Employe deleted"];
     }
 }
