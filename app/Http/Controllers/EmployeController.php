@@ -11,17 +11,9 @@ class EmployeController extends Controller
     /**
      * Display all active employes.
      */
-    public function index()
+    public function index($pagination = true)
     {
-        return Employe::where("status", ["ACTIVE"])->with('tasks')->paginate();
-    }
-
-    /**
-     * Display all employes
-     */
-    public function all()
-    {
-        return Employe::with('tasks')->paginate();
+        return Employe::with('tasks')->get();
     }
 
     /**

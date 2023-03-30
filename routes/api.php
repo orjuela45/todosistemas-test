@@ -15,9 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix("employe")->group(function(){
-    Route::get("all", [EmployeController::class, "all"]);
-});
-
 Route::apiResource("employe", EmployeController::class);
 Route::apiResource("task", TaskController::class);

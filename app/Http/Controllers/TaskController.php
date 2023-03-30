@@ -14,7 +14,14 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::with("employe")->paginate();
+        return Task::with("employe")->get();
+    }
+    
+    public function indexPage()
+    {
+        $tasks = $this->index();
+        $employes = (new EmployeController())->index(false);
+        return view("tasks", ["tasks" => $tasks, "employes" => $employes]);
     }
 
     /**
@@ -64,7 +71,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->update(["status" => "DELETED"]);
+        $task->delete();
         return ["msg" => "Task deleted"];
     }
 }

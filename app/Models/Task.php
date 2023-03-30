@@ -11,7 +11,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    static $status = ["CREATED", "DOING", "FINISHED", "DELETED"];
+    static $status = ["CREATED", "DOING", "FINISHED"];
 
     protected $fillable = ['title', 'description', 'status', 'execution_date'];
 
