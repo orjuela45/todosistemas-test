@@ -16,11 +16,25 @@ and then you have to enter to the folder that you donwload to prepare the enviro
 
 in this section it explain how prepare the enviroment and how to run it:
 
-1. Create a database
+1. install packages
+You have to install the package necessaries to run the project, use the command 
+```
+composer install
+```
 
-If you have Docker you can execute the command docker-compose up -d to create the database. But if you want to use mysql you have to create a new database and put the credentials in the file .env
+1. Configure .env file
+You have to configure the env file, you can copy the file .env.example and remove the .example part
 
-2. Migrate tables
+2. Create a database
+
+If you have Docker you can execute the next command to create the database.
+```
+docker-compose up -d
+```
+
+if you want to use mysql you have to create a new database and put the credentials in the file .env
+
+3. Migrate tables
 
 To create the tables that the project need you have to run the next command
 ```
@@ -29,14 +43,14 @@ php artisan migrate
 
 Note: check the database has the tables employes and tasks
 
-3. Seed database 
+4. Seed database 
 
 To fill the tables with some data you have to run the next command
 ```
 php artisan db:seed
 ```
 
-4. Execute project.
+5. Execute project.
 
 Execute the comand to up the server 
 ```
