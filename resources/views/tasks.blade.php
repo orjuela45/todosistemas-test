@@ -53,6 +53,7 @@
             <tr>
               <th scope="col">id</th>
               <th scope="col">title</th>
+              <th scope="col">status</th>
               <th scope="col">Employe</th>
               <th scope="col">Execution Date</th>
               <th scope="col">Delay days</th>
@@ -89,6 +90,7 @@
         columns: [
           { data: 'id', name: "id"},
           { data: 'title', name: "title"},
+          { data: 'status', name: "status"},
           { data: 'employe.fullname', name: "employe"},
           { data: 'execution_date', name: "execution_day"},
           { data: 'delay', name: "delay"},
