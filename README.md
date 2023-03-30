@@ -8,7 +8,7 @@ It project was developed in PHP using Laravel, bootstrap and some libraries of j
 
 You have to execute the next command to get the project 
 ```
-
+git clone https://github.com/orjuela45/todosistemas-test.git
 ```
 and then you have to enter to the folder that you donwload to prepare the enviroment
 
